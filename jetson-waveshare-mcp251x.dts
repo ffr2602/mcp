@@ -62,34 +62,6 @@
 		};
 	};
 
-	fragment@2 {
-		target = <&spi1>;
-		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			spi@0 {
-				status = "disabled";
-			};			
-			spi@1 {
-				status = "okay";
-				compatible = "microchip,mcp2515";
-				reg = <0x0>;
-				spi-max-frequency = <10000000>;
-				nvidia,enable-hw-based-cs;
-				nvidia,rx-clk-tap-delay = <0x7>;
-				clocks = <&can_clock>;
-				interrupt-parent = <&gpio>;
-				interrupts = <TEGRA_GPIO(V, 0) 0x1>;
-				controller-data {
-					nvidia,cs-setup-clk-count = <0x1e>;
-					nvidia,cs-hold-clk-count = <0x1e>;
-					nvidia,rx-clk-tap-delay = <0x1f>;
-					nvidia,tx-clk-tap-delay = <0x0>;
-				};
-			};
-		};
-	};
-
 	fragment@3 {
 		target = <&pinmux>;
 		__overlay__ {
@@ -121,34 +93,6 @@
 				pin24 {
 					nvidia,pins = "spi1_cs0_pc3";
 					nvidia,function = "spi1";
-					nvidia,pull = <TEGRA_PIN_PULL_UP>;
-					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-				};
-				pin37 {
-					nvidia,pins = "spi2_mosi_pb4";
-					nvidia,function = "spi2";
-					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-				};
-				pin22 {
-					nvidia,pins = "spi2_miso_pb5";
-					nvidia,function = "spi2";
-					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-				};
-				pin13 {
-					nvidia,pins = "spi2_sck_pb6";
-					nvidia,function = "spi2";
-					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-				};
-				pin18 {
-					nvidia,pins = "spi2_cs0_pb7";
-					nvidia,function = "spi2";
 					nvidia,pull = <TEGRA_PIN_PULL_UP>;
 					nvidia,tristate = <TEGRA_PIN_DISABLE>;
 					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
